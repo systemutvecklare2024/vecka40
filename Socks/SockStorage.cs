@@ -30,11 +30,16 @@ namespace Socks
 
             foreach(var item in data)
             {
-                var sock = item.ToSock();
-
-                if (sock != null)
+                try
                 {
-                    socks.Add(sock);
+                    var sock = item.ToSock();
+                    if (sock != null)
+                    {
+                        socks.Add(sock);
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"Unable to add sock: {ex.Message}");
                 }
             }
 
